@@ -1,0 +1,5 @@
+{
+  "buildCommand": "php build.php",
+  "outputDirectory": "dist",
+  "framework": null
+}
