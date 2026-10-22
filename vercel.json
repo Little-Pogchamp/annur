@@ -1,17 +1,18 @@
 {
-  "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.6.0"
-    }
-  },
+  "version": 2,
   "builds": [
     {
       "src": "build.php",
-      "use": "@vercel/static-build",
+      "use": "vercel-php@0.6.0",
       "config": {
         "distDir": "dist"
       }
     }
   ],
-  "buildCommand": "amazon-linux-extras install php8.2 -y || yum install -y php; php build.php"
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/$1"
+    }
+  ]
 }
