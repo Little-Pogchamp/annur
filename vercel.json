@@ -1,5 +1,17 @@
 {
-  "buildCommand": "php build.php",
-  "outputDirectory": "dist",
-  "framework": null
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.6.0"
+    }
+  },
+  "builds": [
+    {
+      "src": "build.php",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "buildCommand": "amazon-linux-extras install php8.2 -y || yum install -y php; php build.php"
 }
