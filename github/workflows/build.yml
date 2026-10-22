@@ -1,0 +1,29 @@
+name: Auto Build PHP to HTML
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Compile PHP to HTML
+        run: php build.php
+
+      - name: Commit Generated dist/index.html
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-build: compile dist/index.html"
+          file_pattern: "dist/index.html"
